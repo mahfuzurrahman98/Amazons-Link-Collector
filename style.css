@@ -1,0 +1,13 @@
+@import url(assets/bootstrap.min.css);
+@font-face {
+	font-family: ubuntu;
+	src: url("assets/Ubuntu-R.ttf");
+}
+
+body {
+	font-family: ubuntu;
+}
+
+li {
+	margin: -15px;
+}
