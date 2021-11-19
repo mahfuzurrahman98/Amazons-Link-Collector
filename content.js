@@ -8,10 +8,11 @@ window.onload = () => {
 					const linkText = document.getElementById(
 						"amzn-ss-text-shortlink-textarea"
 					).textContent;
-					console.log("from content.js: ", linkText);
-					const msg = { curLink: linkText };
-					chrome.runtime.sendMessage(msg);
-				}, 1000);
+					chrome.runtime.sendMessage({ curLink: linkText });
+					setTimeout(() => {
+						document.getElementsByClassName("a-popover")[0].remove();
+					}, 250);
+				}, 500);
 			});
 	}
 };
