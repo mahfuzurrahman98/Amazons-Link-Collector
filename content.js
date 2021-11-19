@@ -5,18 +5,18 @@ window.onload = () => {
 			.getElementById("amzn-ss-text-link")
 			.addEventListener("click", () => {
 				setTimeout(() => {
-					const linkText = document.getElementById(
-						"amzn-ss-text-shortlink-textarea"
-					).value;
-					const msg = { curLink: linkText };
-					chrome.runtime.sendMessage(msg);
-					document.write(
-						`<h1 style="color:green;margin-left:auto;margin-right:auto;margin-top:7vh;margin-bottom:10vh;text-align: center;">Done, Link Coppied!</h1>`
+					chrome.runtime.sendMessage(
+						{
+							curLink: document.getElementById(
+								"amzn-ss-text-shortlink-textarea"
+							).value,
+						},
+						() => {}
 					);
-					// document.write(
-					// 	`<h1 style="color:green;text-align:center;">Done, Link Coppied!</h1>`
-					// );
-				}, 500);
+					document.write(
+						`<h1 style="font-family:ubuntu;color:green;margin-left:auto;margin-right:auto;margin-top:7vh;margin-bottom:10vh;text-align: center;">Done, Link Coppied!</h1>`
+					);
+				}, 1000);
 			});
 	}
 };
