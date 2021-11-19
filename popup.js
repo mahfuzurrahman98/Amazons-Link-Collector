@@ -1,22 +1,27 @@
 const ul = document.getElementById("ul_list");
 
-const makeBlank = () => {
-	chrome.storage.sync.set({ links: ["No_links_are_stored"] });
-	document.getElementById("clr").classList.add("d-none");
-	ul.innerHTML = `<li><a class="text-danger" href="javascript:void(0)">No_links_are_stored</a></li>`;
-};
-
 document.addEventListener("DOMContentLoaded", () => {
-	document.getElementById("clr").addEventListener("click", makeBlank);
+	document.getElementById("clr").addEventListener("click", () => {
+		document.getElementById("clr").classList.add("d-none");
+		ul.innerHTML = `<p class="text-danger me-4">No_links_are_stored</p>`;
+		chrome.storage.sync.set({ links: ["No_links_are_stored"] });
+	});
 
 	chrome.storage.sync.get(["links"], function (res) {
 		if (!res.links) {
-			makeBlank();
+			document.getElementById(
+				"main"
+			).innerHTML = `<p class="text-danger me-4 mt-2">No_links_are_stored</p>`;
+			chrome.storage.sync.set({ links: ["No_links_are_stored"] });
 		} else {
 			let n = res.links.length;
 			if (n == 1) {
-				makeBlank();
+				document.getElementById(
+					"main"
+				).innerHTML = `<p class="text-danger me-4 mt-2">No_links_are_stored</p>`;
+				chrome.storage.sync.set({ links: ["No_links_are_stored"] });
 			} else {
+				document.getElementById("clr").classList.remove("d-none");
 				for (let i = 1; i < n; i++) {
 					const e = res.links[i];
 					const li = document.createElement("li");
