@@ -1,6 +1,5 @@
 window.onload = () => {
-	let curLoc = window.location.href;
-	if (curLoc.includes("amazon")) {
+	if (window.location.href.includes("amazon")) {
 		document
 			.getElementById("amzn-ss-text-link")
 			.addEventListener("click", () => {
@@ -11,12 +10,13 @@ window.onload = () => {
 								"amzn-ss-text-shortlink-textarea"
 							).value,
 						},
-						() => {}
+						() => {
+							document.write(
+								`<h1 style="font-family:ubuntu;color:green;margin-left:auto;margin-right:auto;margin-top:7vh;margin-bottom:10vh;text-align: center;">Done, Link Coppied!</h1>`
+							);
+						}
 					);
-					document.write(
-						`<h1 style="font-family:ubuntu;color:green;margin-left:auto;margin-right:auto;margin-top:7vh;margin-bottom:10vh;text-align: center;">Done, Link Coppied!</h1>`
-					);
-				}, 1000);
+				}, 500);
 			});
 	}
 };
