@@ -2,8 +2,9 @@ const ul = document.getElementById("ul_list");
 
 document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("clr").addEventListener("click", () => {
-		document.getElementById("clr").classList.add("d-none");
-		ul.innerHTML = `<p class="text-danger me-4">No_links_are_stored</p>`;
+		document.getElementById(
+			"main"
+		).innerHTML = `<p style="color:red;font-size:1rem;">All_the_links_are_cleared</p>`;
 		chrome.storage.sync.set({ links: ["No_links_are_stored"] });
 	});
 
@@ -11,31 +12,33 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!res.links) {
 			document.getElementById(
 				"main"
-			).innerHTML = `<p class="text-danger me-4 mt-2">No_links_are_stored</p>`;
+			).innerHTML = `<p style="color:red;font-size:1rem">No_links_are_stored</p>`;
 			chrome.storage.sync.set({ links: ["No_links_are_stored"] });
 		} else {
 			let n = res.links.length;
 			if (n == 1) {
 				document.getElementById(
 					"main"
-				).innerHTML = `<p class="text-danger me-4 mt-2">No_links_are_stored</p>`;
+				).innerHTML = `<p style="color:red;font-size:1rem">No_links_are_stored</p>`;
 				chrome.storage.sync.set({ links: ["No_links_are_stored"] });
 			} else {
 				document.getElementById("clr").classList.remove("d-none");
+				printDash = false;
 				for (let i = 1; i < n; i++) {
 					const e = res.links[i];
 					const li = document.createElement("li");
-					const p = document.createElement("p");
 					const sp = document.createElement("div");
 
-					if (i % 11 == 0) {
-						sp.classList.add("my-3", "text-primary");
-						sp.innerHTML = "----------------------------";
-						ul.append(sp);
+					if ((i - 1) % 10 == 0) {
+						if (printDash) {
+							sp.style.color = "orange";
+							sp.innerHTML = "----------------------------------";
+							ul.append(sp);
+						}
+						printDash = true;
 					}
 
-					p.textContent = e;
-					li.append(p);
+					li.textContent = e;
 					ul.append(li);
 				}
 			}

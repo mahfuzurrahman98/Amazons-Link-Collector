@@ -7,14 +7,14 @@
 		"default_popup": "popup.html",
 		"default_title": "Amazon Listed Links v1.0",
 		"default_icon": {
-			"16": "assets/icon.png"
+			"16": "icon.png"
 		}
 	},
 	"icons": {
-		"16": "assets/icon.png",
-		"32": "assets/icon.png",
-		"48": "assets/icon.png",
-		"128": "assets/icon.png"
+		"16": "icon.png",
+		"32": "icon.png",
+		"48": "icon.png",
+		"128": "icon.png"
 	},
 	"permissions": ["storage"],
 	"content_scripts": [
